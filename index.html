@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fffred.info - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
@@ -13,7 +16,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #16a34a;
             min-height: 100vh;
             display: flex;
@@ -62,6 +65,12 @@
         <p class="text-lg text-slate-600 leading-relaxed mb-5">We want the whole world to know the truth!</p>
         <p class="text-lg text-slate-600 leading-relaxed mb-5">Stay tuned.</p>
 
+        <div class="mt-8 text-center">
+            <button onclick="openModal()" class="text-xl text-green-600 font-semibold underline hover:text-green-700 cursor-pointer">
+                NJ BAR COMPLAINT
+            </button>
+        </div>
+
         <div class="mt-10 pt-8 border-t-2 border-slate-200">
             <h3 class="text-2xl text-green-600 font-semibold mb-5">FREDERICK (FRED) ROSENBERG JD</h3>
             <p class="text-base text-slate-700 mb-3"><strong>Location:</strong> South Orange, NJ<br>4 S Orange Ave # 448, South Orange, NJ 07079</p>
@@ -76,5 +85,63 @@
             &copy; 2026 fffred.info
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="complaintModal" class="hidden fixed inset-0 bg-black bg-opacity-75 items-center justify-center p-4 z-50" style="display: none;">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            <div class="flex justify-between items-center p-6 border-b border-slate-200">
+                <h3 class="text-2xl font-semibold text-slate-800">NJ Bar Complaint</h3>
+                <button onclick="closeModal()" class="text-slate-500 hover:text-slate-700 text-3xl font-light leading-none">
+                    &times;
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <div class="text-slate-700 whitespace-pre-wrap font-mono text-sm" id="complaintContent">
+                    Loading complaint...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('complaintModal');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            // You can replace this with actual complaint text
+            const complaintText = `[Insert NJ Bar Complaint text here]
+
+This is a placeholder for the actual complaint document.
+
+You can paste the full text of the complaint here, and it will be displayed in this modal window.
+
+Users can read it but cannot easily download it.`;
+
+            document.getElementById('complaintContent').textContent = complaintText;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('complaintModal');
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('complaintModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
